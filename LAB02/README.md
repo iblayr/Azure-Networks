@@ -147,7 +147,16 @@ Set-AzNetworkInterface -NetworkInterface $networkInterface
 
 ![036-create-LNG-01](https://user-images.githubusercontent.com/25647623/227723842-2f76be5a-1fc8-4aed-a739-ae4852ad4fe4.png)
 
-## Deploy VPN Point to Site
+## Configurar VPN Site-to-Site
+
+![037-connect-VPN-Onpremises](https://user-images.githubusercontent.com/25647623/227724120-ef67e709-7d10-4066-8740-c49c47f0697b.png)
+
+* Habilitar virtual network gateway ou route server no Peering USA01-to-BRA01
+
+<img src="https://user-images.githubusercontent.com/25647623/227724291-515b998a-af8c-4100-9dfd-4e619af5dbc8.png" width="500px"></img>
+<img src="https://user-images.githubusercontent.com/25647623/227724292-65dfce58-17fd-4320-978c-57e0c8781c4c.png" width="500px"></img>
+
+## Implantar VPN Point to Site
 
 ### Configurar VPN Point to Site
 
