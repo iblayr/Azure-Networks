@@ -53,7 +53,7 @@ Set-AzVirtualNetwork -VirtualNetwork $vnet
 
 ```
 
-## Deploy VM para similar firewall onpremises
+## Implantar uma VM para simular um Firewall On-premises
 
 ### Azure Portal
 
