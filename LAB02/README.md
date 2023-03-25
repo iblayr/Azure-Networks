@@ -156,6 +156,14 @@ Set-AzNetworkInterface -NetworkInterface $networkInterface
 <img src="https://user-images.githubusercontent.com/25647623/227724291-515b998a-af8c-4100-9dfd-4e619af5dbc8.png" width="500px"></img>
 <img src="https://user-images.githubusercontent.com/25647623/227724292-65dfce58-17fd-4320-978c-57e0c8781c4c.png" width="500px"></img>
 
+* Estabelecer conexão VPN Site-to-Site
+
+![Screenshot (24)](https://user-images.githubusercontent.com/25647623/227727270-c2e70b0b-243c-43cd-8076-54017e0d9b70.png)
+
+* Testar conexão VPN Site-to-Site
+
+![Screenshot (25)](https://user-images.githubusercontent.com/25647623/227727271-f417797a-c4da-48aa-b6b4-c452e384ce35.png)
+
 ## Implantar VPN Point to Site
 
 * Configurar conexão Point to Site no Virtual Network Gateway (VNG-01)
