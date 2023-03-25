@@ -9,15 +9,7 @@
 
 * Azure Portal
 
-** VNET-USA01
 
-
-
-*** SUB-CoreServices
-
-
-
-*** SUB-Security
 
 
 * Azure Powershell
@@ -27,6 +19,16 @@
 ### Criar VNETS
 
 * Azure Portal
+
+  * VNET-USA01
+
+
+
+  * SUB-CoreServices
+
+
+
+  * SUB-Security
 
 * Azure Powershell
 
