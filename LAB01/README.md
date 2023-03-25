@@ -3,7 +3,7 @@
 ## Arquitetura
 
 ![Arquitetura](https://user-images.githubusercontent.com/25647623/227696694-24803702-6e33-4026-8439-076dcd7959c5.png)
-
+***
 ## Criar estrutura de rede usando 3 VNETs em regiões diferentes, com suas respectivas Subnets.
 
 ### Criar grupo de recursos
@@ -32,7 +32,7 @@ if ((Get-AzResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue)
 }
 
 ```
-
+***
 ### Criar VNETS
 
 #### Azure Portal
@@ -107,7 +107,7 @@ $vnetEUR01 = New-AzVirtualNetwork -ResourceGroupName $rgName -Name 'VNET-EUR01' 
   -Location 'westeurope' -Subnet $subFiles
 
 ```
-
+***
 ## Criar configuração de peering entre VNETs.
 
 * Peering VNET-USA01 -> VNET-BRA01
@@ -141,7 +141,7 @@ $vnetEUR01 = New-AzVirtualNetwork -ResourceGroupName $rgName -Name 'VNET-EUR01' 
     Add-AzVirtualNetworkPeering -Name 'VNET-EUR01-to-VNET-USA01' -VirtualNetwork $vnetEUR01 -RemoteVirtualNetworkId $vnetUSA01.Id
 
 ```
-
+***
 ## Implantar VM-LNX-01 na VNET East US e VM-WIN-01 na VNET Brazil South.
 
 * Deploy VM-LNX01
@@ -159,7 +159,7 @@ $vnetEUR01 = New-AzVirtualNetwork -ResourceGroupName $rgName -Name 'VNET-EUR01' 
 * Testar conexão entre as VMs
 
 ![022-test-connection](https://user-images.githubusercontent.com/25647623/227696438-75783617-73e9-4332-8044-8d68a9d5924b.png)
-
+***
 ## Configurar um Private DNS e linkar a todas VNETs.
 
 * Criar zona priva de DNS
