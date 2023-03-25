@@ -158,11 +158,24 @@ Set-AzNetworkInterface -NetworkInterface $networkInterface
 
 ## Implantar VPN Point to Site
 
+* Configurar conexão Point to Site no Virtual Network Gateway (VNG-01)
+
+![040-config-vpn-p2p](https://user-images.githubusercontent.com/25647623/227726558-492f64a3-bf99-447e-81fe-e7afd73f3cf4.png)
+
+* Configurar acesso de usuários a VPN Point to Site
+
+![041-config-vpn-p2p](https://user-images.githubusercontent.com/25647623/227726612-21749255-c7f0-4711-865f-443bee4a6323.png)
+
 ### Configurar VPN Point to Site
 
+* Baixar e configurar VPN Client
 
+![042-config-vpn-p2p](https://user-images.githubusercontent.com/25647623/227726677-55d6628b-fa9b-44c1-99a0-a66ef3fe3b91.png)
 
 ### Estabelecer conexão VPN P2P
 
+* Conectar a rede do azure e testar conexão com VMs
+
+![043-connect-vpn-p2p](https://user-images.githubusercontent.com/25647623/227726721-e8a1de7f-ef9c-4f70-9e06-ec5370b50f8c.png)
 
 
