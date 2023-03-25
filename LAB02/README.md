@@ -145,7 +145,7 @@ Set-AzNetworkInterface -NetworkInterface $networkInterface
 
 ## Criar um Local Network Gateway
 
-
+![036-create-LNG-01](https://user-images.githubusercontent.com/25647623/227723842-2f76be5a-1fc8-4aed-a739-ae4852ad4fe4.png)
 
 ## Deploy VPN Point to Site
 
