@@ -1,20 +1,31 @@
 # Topologia de rede hub-spoke no Azure
 
+## Criar estrutura de rede usando 3 VNETs em regiões diferentes, com suas respectivas Subnets.
+
+
+***
+&nbsp;
+&nbsp;
+&nbsp;
+
 ## Arquitetura
 
 ![Arquitetura](https://user-images.githubusercontent.com/25647623/227696694-24803702-6e33-4026-8439-076dcd7959c5.png)
+
+
 ***
-## Criar estrutura de rede usando 3 VNETs em regiões diferentes, com suas respectivas Subnets.
+&nbsp;
+&nbsp;
+&nbsp;
 
-### Criar grupo de recursos
 
-#### Azure Portal
+## Criar grupo de recursos
 
+### Azure Portal
 
 ![001-create-rg-azure](https://user-images.githubusercontent.com/25647623/227694692-b7629b8c-18d9-46e4-8155-f2f269d373f9.png)
 
-
-#### Azure Powershell
+### Azure Powershell
 
 ```powershell 
 
@@ -33,53 +44,57 @@ if ((Get-AzResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue)
 
 ```
 ***
-### Criar VNETS
+&nbsp;
+&nbsp;
+&nbsp;
 
-#### Azure Portal
+## Criar Virtual Networks
+
+### Azure Portal
 
   
-  * VNET-USA01
+* VNET-USA01
 
 ![002-create-vnet-usa01](https://user-images.githubusercontent.com/25647623/227694783-9a6ce49b-a381-4447-8f90-dc770de351d6.png)
 
-  * SUB-CoreServices
+* SUB-CoreServices
 
 ![003-create-SUB-CoreServices](https://user-images.githubusercontent.com/25647623/227694854-278cbc4a-b910-4b71-871d-88d11e951f41.png)
 
-  * SUB-Security
+* SUB-Security
 
 ![004-create-SUB-Security](https://user-images.githubusercontent.com/25647623/227694937-cd6fd3eb-f994-4e4c-a193-b590088d33e1.png)
 
-  * GatewaySubnet
+* GatewaySubnet
 
 ![014-create-GatewaySubnet](https://user-images.githubusercontent.com/25647623/227695644-6983ab86-c942-4900-a206-80e109ef646a.png)
 
-  * VNET-EUR01
+* VNET-EUR01
 
 ![006-create-vnet-eur01](https://user-images.githubusercontent.com/25647623/227695582-2eff68da-6a63-4d6e-8540-74c36f1f651c.png)
 
-  * SUB-Files
+* SUB-Files
 
 ![007-create-SUB-Files](https://user-images.githubusercontent.com/25647623/227695594-3b89b9d4-ede6-4a87-bf80-b2471bf1843e.png)
 
-  * VNET-BRA01
+* VNET-BRA01
 
 ![009-create-vnet-bra01](https://user-images.githubusercontent.com/25647623/227695600-cf4a9c48-d0eb-4d14-bf57-46246a91f860.png)
 
-  * SUB-WebServers
+* SUB-WebServers
 
 ![010-create-SUB-WebServers](https://user-images.githubusercontent.com/25647623/227695609-6b3e4f2a-a713-4a47-bd17-756ac4753b0c.png)
 
-  * SUB-Database
+* SUB-Database
 
 ![011-create-SUB-Database](https://user-images.githubusercontent.com/25647623/227695616-371d304b-cae9-42f1-ac43-5819af44d240.png)
 
-  * SUB-Storage
+* SUB-Storage
 
 ![012-create-SUB-Storage](https://user-images.githubusercontent.com/25647623/227695620-12ca2136-7833-4dbe-b185-592965067ef6.png)
 
 
-#### Azure Powershell
+### Azure Powershell
 
 ```powershell
 
@@ -107,7 +122,12 @@ $vnetEUR01 = New-AzVirtualNetwork -ResourceGroupName $rgName -Name 'VNET-EUR01' 
   -Location 'westeurope' -Subnet $subFiles
 
 ```
+
+&nbsp;
+&nbsp;
+&nbsp;
 ***
+
 ## Criar configuração de peering entre VNETs.
 
 * Peering VNET-USA01 -> VNET-BRA01
@@ -122,11 +142,12 @@ $vnetEUR01 = New-AzVirtualNetwork -ResourceGroupName $rgName -Name 'VNET-EUR01' 
 
 ![017-vnets-peerings](https://user-images.githubusercontent.com/25647623/227696252-30612f38-b609-4932-9861-f0ce0637e2ba.png)
 
-#### Azure Powershell
+### Azure Powershell
 
 ```powershell
 
-# Criar emparelhamento entre vnets
+
+## Criar emparelhamento entre vnets
 
     # Peer VNET-USA01 to VNET-BRA01.
     Add-AzVirtualNetworkPeering -Name 'VNET-USA01-to-VNET-BRA01' -VirtualNetwork $vnetUSA01 -RemoteVirtualNetworkId $vnetBRA01.Id
@@ -141,7 +162,12 @@ $vnetEUR01 = New-AzVirtualNetwork -ResourceGroupName $rgName -Name 'VNET-EUR01' 
     Add-AzVirtualNetworkPeering -Name 'VNET-EUR01-to-VNET-USA01' -VirtualNetwork $vnetEUR01 -RemoteVirtualNetworkId $vnetUSA01.Id
 
 ```
+
+&nbsp;
+&nbsp;
+&nbsp;
 ***
+
 ## Implantar VM-LNX-01 na VNET East US e VM-WIN-01 na VNET Brazil South.
 
 * Deploy VM-LNX01
