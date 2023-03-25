@@ -2,6 +2,7 @@
 
 ## Arquitetura
 
+![Arquitetura](https://user-images.githubusercontent.com/25647623/227696694-24803702-6e33-4026-8439-076dcd7959c5.png)
 
 ## Criar estrutura de rede usando 3 VNETs em regiões diferentes, com suas respectivas Subnets.
 
@@ -13,9 +14,24 @@
 ![001-create-rg-azure](https://user-images.githubusercontent.com/25647623/227694692-b7629b8c-18d9-46e4-8155-f2f269d373f9.png)
 
 
-* Azure Powershell
+### Azure Powershell
 
+```powershell 
 
+# Definir variáveis para nome do grupo de recursos e região
+$resourceGroupName = "rg-azure"
+$location = "eastus"
+
+# Verificar se o grupo de recursos já existe
+if ((Get-AzResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue) -eq $null) {
+    # Se o grupo de recursos não existir, criar um novo
+    New-AzResourceGroup -Name $resourceGroupName -Location $location
+} else {
+    # Se o grupo de recursos já existir, mostrar uma mensagem de aviso
+    Write-Warning "O grupo de recursos '$resourceGroupName' já existe na região '$location'."
+}
+
+```
 
 ### Criar VNETS
 
@@ -65,7 +81,32 @@
 
 #### Azure Powershell
 
+```powershell
 
+# Definindo variáveis
+$rgName='rg-azure'
+$location='eastus'
+
+# Criando a rede virtual hub e suas sub redes
+$subCoreServices = New-AzVirtualNetworkSubnetConfig -Name 'SUB-CoreServices' -AddressPrefix '10.1.0.0/24'
+$subSecurity = New-AzVirtualNetworkSubnetConfig -Name 'SUB-Security' -AddressPrefix '10.1.1.0/24'
+$gatewaySubnet = New-AzVirtualNetworkSubnetConfig -Name 'GatewaySubnet' -AddressPrefix '10.1.255.0/27'
+$vnetUSA01 = New-AzVirtualNetwork -ResourceGroupName $rgName -Name 'VNET-USA01' -AddressPrefix '10.1.0.0/16' `
+  -Location $location -Subnet $subCoreServices, $subSecurity, $gatewaySubnet
+
+# Criando a rede virtual spoke 1 e suas sub redes
+$subWebServers = New-AzVirtualNetworkSubnetConfig -Name 'SUB-WebServers' -AddressPrefix '10.3.0.0/24'
+$subDatabase = New-AzVirtualNetworkSubnetConfig -Name 'SUB-Database' -AddressPrefix '10.3.1.0/24'
+$subStorage = New-AzVirtualNetworkSubnetConfig -Name 'SUB-Storage' -AddressPrefix '10.3.2.0/24'
+$vnetBRA01 = New-AzVirtualNetwork -ResourceGroupName $rgName -Name 'VNET-BRA01' -AddressPrefix '10.3.0.0/16' `
+  -Location 'brazilsouth' -Subnet $subWebServers, $subDatabase, $subStorage
+
+# Criando a rede virtual spoke 2 e sua sub rede
+$subFiles = New-AzVirtualNetworkSubnetConfig -Name 'SUB-Files' -AddressPrefix '10.2.0.0/24'
+$vnetEUR01 = New-AzVirtualNetwork -ResourceGroupName $rgName -Name 'VNET-EUR01' -AddressPrefix '10.2.0.0/16' `
+  -Location 'westeurope' -Subnet $subFiles
+
+```
 
 ## Criar configuração de peering entre VNETs.
 
@@ -81,6 +122,25 @@
 
 ![017-vnets-peerings](https://user-images.githubusercontent.com/25647623/227696252-30612f38-b609-4932-9861-f0ce0637e2ba.png)
 
+### Azure Powershell
+
+```powershell
+
+# Criar emparelhamento entre vnets
+
+    # Peer VNET-USA01 to VNET-BRA01.
+    Add-AzVirtualNetworkPeering -Name 'VNET-USA01-to-VNET-BRA01' -VirtualNetwork $vnetUSA01 -RemoteVirtualNetworkId $vnetBRA01.Id
+
+    # Peer VNET-BRA01 to VNET-USA01.
+    Add-AzVirtualNetworkPeering -Name 'VNET-BRA01-to-VNET-USA01' -VirtualNetwork $vnetBRA01 -RemoteVirtualNetworkId $vnetUSA01.Id
+
+    # Peer VNET-USA01 to VNET-EUR01.
+    Add-AzVirtualNetworkPeering -Name 'VNET-USA01-to-VNET-EUR01' -VirtualNetwork $vnetUSA01 -RemoteVirtualNetworkId $vnetEUR01.Id
+
+    # Peer VNET-EUR01 to VNET-USA01.
+    Add-AzVirtualNetworkPeering -Name 'VNET-EUR01-to-VNET-USA01' -VirtualNetwork $vnetEUR01 -RemoteVirtualNetworkId $vnetUSA01.Id
+
+```
 
 ## Realizar deploy de uma VM na VNET East US e Brazil South.
 
