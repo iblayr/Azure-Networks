@@ -2,7 +2,7 @@
 
 ## Arquitetura
 
-
+![Arquitetura](https://user-images.githubusercontent.com/25647623/227725284-61d330a3-fa46-4060-8540-ee181ac96f6b.png)
 
 ## Criar um Virtual Network Gateway.
 
