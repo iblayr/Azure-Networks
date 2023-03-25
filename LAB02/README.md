@@ -1,4 +1,4 @@
-# LAB 02 – Deploy Virtual Network Gateway
+# LAB 02 – Hybrid network with Azure Virtual Network Gateway
 
 ## Arquitetura
 
