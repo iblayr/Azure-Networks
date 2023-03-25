@@ -1,4 +1,4 @@
-# LAB 02 – Hybrid network with Azure Virtual Network Gateway
+# LAB 02 – Rede Híbrida com Azure Virtual Network Gateway
 
 ## Arquitetura
 
@@ -53,7 +53,7 @@ Set-AzVirtualNetwork -VirtualNetwork $vnet
 
 ```
 
-## Deploy VM para similar firewall onpremises
+## Implantar uma VM para simular um Firewall On-premises
 
 ### Azure Portal
 
@@ -156,26 +156,28 @@ Set-AzNetworkInterface -NetworkInterface $networkInterface
 <img src="https://user-images.githubusercontent.com/25647623/227724291-515b998a-af8c-4100-9dfd-4e619af5dbc8.png" width="500px"></img>
 <img src="https://user-images.githubusercontent.com/25647623/227724292-65dfce58-17fd-4320-978c-57e0c8781c4c.png" width="500px"></img>
 
-## Implantar VPN Point to Site
+* Estabelecer conexão VPN Site-to-Site
 
-* Configurar conexão Point to Site no Virtual Network Gateway (VNG-01)
+![Screenshot (24)](https://user-images.githubusercontent.com/25647623/227727270-c2e70b0b-243c-43cd-8076-54017e0d9b70.png)
+
+* Testar conexão VPN Site-to-Site
+
+![Screenshot (25)](https://user-images.githubusercontent.com/25647623/227727271-f417797a-c4da-48aa-b6b4-c452e384ce35.png)
+
+## Configurar VPN Point-to-Site
+
+* Configurar conexão Point-to-Site no Virtual Network Gateway (VNG-01)
 
 ![040-config-vpn-p2p](https://user-images.githubusercontent.com/25647623/227726558-492f64a3-bf99-447e-81fe-e7afd73f3cf4.png)
 
-* Configurar acesso de usuários a VPN Point to Site
+* Configurar acesso de usuários à VPN Point-to-Site
 
 ![041-config-vpn-p2p](https://user-images.githubusercontent.com/25647623/227726612-21749255-c7f0-4711-865f-443bee4a6323.png)
-
-### Configurar VPN Point to Site
 
 * Baixar e configurar VPN Client
 
 ![042-config-vpn-p2p](https://user-images.githubusercontent.com/25647623/227726677-55d6628b-fa9b-44c1-99a0-a66ef3fe3b91.png)
 
-### Estabelecer conexão VPN P2P
-
-* Conectar a rede do azure e testar conexão com VMs
+* Estabelecer conexão VPN Point-to-Site e testar conexão com VMs
 
 ![043-connect-vpn-p2p](https://user-images.githubusercontent.com/25647623/227726721-e8a1de7f-ef9c-4f70-9e06-ec5370b50f8c.png)
-
-
