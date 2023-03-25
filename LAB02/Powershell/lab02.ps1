@@ -25,7 +25,7 @@ $subNet = Add-AzVirtualNetworkSubnetConfig `
 
 Set-AzVirtualNetwork -VirtualNetwork $vnet
 
-# Deploy de uma VM Windows para simular um firewall OnPremises
+# Implantar VM para simular um Firewall On-Premises
 
 # Definir as informações da VM
 $virtualMachineName = "VM-FW-Onpremises"
