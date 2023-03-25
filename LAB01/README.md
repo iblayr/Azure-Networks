@@ -1,4 +1,4 @@
-# Deploy da estrutura de VNETs e conexões peering
+# Topologia de rede hub-spoke no Azure
 
 ## Arquitetura
 
@@ -142,23 +142,19 @@ $vnetEUR01 = New-AzVirtualNetwork -ResourceGroupName $rgName -Name 'VNET-EUR01' 
 
 ```
 
-## Realizar deploy de uma VM na VNET East US e Brazil South.
+## Implantar VM-LNX-01 na VNET East US e VM-WIN-01 na VNET Brazil South.
 
 * Deploy VM-LNX01
 
-![018-deploy-vm-lnx01](https://user-images.githubusercontent.com/25647623/227696362-dbf05afd-27b7-47ec-b402-4392fbbffe99.png)
+<img src="https://user-images.githubusercontent.com/25647623/227696362-dbf05afd-27b7-47ec-b402-4392fbbffe99.png" width="500px"></img>
+<img src="https://user-images.githubusercontent.com/25647623/227696385-e6bb7422-6c3b-4be6-92e4-bd4099ae40ec.png" width="500px"></img>
 
-* Deploy VM-LNX01
-
-![019-deploy-vm-lnx01](https://user-images.githubusercontent.com/25647623/227696385-e6bb7422-6c3b-4be6-92e4-bd4099ae40ec.png)
 
 * Deploy VM-WIN01
 
-![020-deploy-vm-win01](https://user-images.githubusercontent.com/25647623/227696404-fc62d8ca-d313-484e-a7c8-60269e9a7471.png)
+<img src="https://user-images.githubusercontent.com/25647623/227696404-fc62d8ca-d313-484e-a7c8-60269e9a7471.png" width="500px"></img>
+<img src="https://user-images.githubusercontent.com/25647623/227696414-72d1d702-1060-42c3-a1e6-05164129c552.png" width="500px"></img>
 
-* Deploy VM-WIN01
-
-![021-deploy-vm-win01](https://user-images.githubusercontent.com/25647623/227696414-72d1d702-1060-42c3-a1e6-05164129c552.png)
 
 * Testar conexão entre as VMs
 
