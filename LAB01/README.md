@@ -1,6 +1,4 @@
-# Topologia de rede hub-spoke no Azure
-
-## Criar estrutura de rede usando 3 VNETs em regiões diferentes, com suas respectivas Subnets.
+# Criar uma estrutura de rede Hub-Spoke no Azure com 3 VNETs em regiões diferentes
 
 &nbsp;
 &nbsp;
