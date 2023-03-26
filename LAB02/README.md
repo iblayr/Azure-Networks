@@ -1,4 +1,4 @@
-# LAB 02 – Configurar uma rede Híbrida com Azure Virtual WAN
+# LAB 02 – Configurar uma rede Híbrida com Azure Virtual Network Gateway
 
 &nbsp;
 &nbsp;
