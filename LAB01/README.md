@@ -5,6 +5,9 @@
 &nbsp;
 &nbsp;
 &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## Arquitetura
 
@@ -13,11 +16,17 @@
 &nbsp;
 &nbsp;
 &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## Criar grupo de recursos
 
 ![001-create-rg-azure](https://user-images.githubusercontent.com/25647623/227694692-b7629b8c-18d9-46e4-8155-f2f269d373f9.png)
 
+&nbsp;
+&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;
 &nbsp;
@@ -67,6 +76,9 @@
 &nbsp;
 &nbsp;
 &nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## Criar configuração de peering entre VNETs.
 
@@ -82,6 +94,9 @@
 
 ![017-vnets-peerings](https://user-images.githubusercontent.com/25647623/227696252-30612f38-b609-4932-9861-f0ce0637e2ba.png)
 
+&nbsp;
+&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;
 &nbsp;
@@ -104,6 +119,9 @@
 
 ![022-test-connection](https://user-images.githubusercontent.com/25647623/227696438-75783617-73e9-4332-8044-8d68a9d5924b.png)
 
+&nbsp;
+&nbsp;
+&nbsp;
 &nbsp;
 &nbsp;
 &nbsp;
