@@ -34,7 +34,7 @@ $publicIpAddressName = "VM-FW-Onpremises-ip"
 $networkSecurityGroupName = "VM-FW-Onpremises-nsg"
 
 # Criar recurso de endereço IP público
-New-AzPublicIpAddress -Name $publicIpAddressName -ResourceGroupName "RG-Onpremises" -Location "eastus2" -AllocationMethod Static -Sku Standard -Tag @{ VM = "LAB-AZ-700" }
+New-AzPublicIpAddress -Name $publicIpAddressName -ResourceGroupName "RG-Onpremises" -Location "eastus2" -AllocationMethod Static -Sku Standard -Tag @{ VM = "AZ-700" }
 
 # Criar recurso de Máquina virtual
 $vm = New-AzVMConfig -VMName $virtualMachineName -VMSize "Standard_B2s"
@@ -46,7 +46,7 @@ New-AzVM -ResourceGroupName "RG-Onpremises" -Location "eastus2" -VM $vm -Tag @{ 
 
 # Criar recurso de Grupo de Segurança de Rede
 $rdpRule = New-AzNetworkSecurityRuleConfig -Name "RDP" -Protocol Tcp -Direction Inbound -Priority 100 -SourceAddressPrefix * -SourcePortRange * -DestinationAddressPrefix * -DestinationPortRange 3389 -Access Allow
-$nsg = New-AzNetworkSecurityGroup -ResourceGroupName "RG-Onpremises" -Location "eastus2" -Name $networkSecurityGroupName -SecurityRules $rdpRule -Tag @{ VM = "LAB-AZ-700" }
+$nsg = New-AzNetworkSecurityGroup -ResourceGroupName "RG-Onpremises" -Location "eastus2" -Name $networkSecurityGroupName -SecurityRules $rdpRule -Tag @{ VM = "AZ-700" }
 
 # Associa o grupo de segurança de rede à placa de rede virtual
 $networkInterface = Get-AzNetworkInterface -Name $networkInterfaceName -ResourceGroupName "RG-Onpremises"

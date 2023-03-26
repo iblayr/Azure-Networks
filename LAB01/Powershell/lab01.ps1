@@ -40,4 +40,4 @@ $vnetEUR01 = New-AzVirtualNetwork -ResourceGroupName $rgName -Name 'VNET-EUR01' 
 
 # Criar zona privada de DNS
 
-New-AzPrivateDnsZone -Name "iblayr.com" -ResourceGroupName "RG-AZ700"
+New-AzPrivateDnsZone -Name "iblayr.com" -ResourceGroupName "rg-azure"
