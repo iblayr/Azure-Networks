@@ -1,8 +1,22 @@
-# LAB 02 – Rede Híbrida com Azure Virtual Network Gateway
+# LAB 02 – Configurar uma rede Híbrida com Azure Virtual WAN
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## Arquitetura
 
 ![Arquitetura](https://user-images.githubusercontent.com/25647623/227725284-61d330a3-fa46-4060-8540-ee181ac96f6b.png)
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## Criar um Virtual Network Gateway.
 
@@ -10,9 +24,14 @@
 
 ![030-create-vng-01](https://user-images.githubusercontent.com/25647623/227722448-cd8e88f2-50db-467b-9a40-b12938d23678.png)
 
-## Criar uma estrutura de rede para simular um ambiente On-Premises.
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
-### Azure Portal
+## Criar uma estrutura de rede para simular um ambiente On-Premises.
 
 * Criar VNET-Onpremises
 
@@ -22,40 +41,14 @@
 
 ![032-create-SUB-Onpremises](https://user-images.githubusercontent.com/25647623/227722472-b23ede53-7000-429c-bc67-bddb72f6a0ad.png)
 
-### Azure Powershell
-
-```powershell
-
-# Definir as informações da VNET
-$rgName = "RG-Onpremises"
-$location = "eastus2"
-$vnetName = "VNET-Onpremises"
-$vnetAddressPrefix = "192.168.0.0/16"
-$subnetName = "SUB-Onpremises"
-$subnetAddressPrefix = "192.168.0.0/24"
-
-# Criar um grupo de recursos
-New-AzResourceGroup -Name $rgName -Location $location
-
-# Criar a VNET e a sub-rede
-$vnet = New-AzVirtualNetwork `
-    -Name $vnetName `
-    -ResourceGroupName $rgName `
-    -Location $location `
-    -AddressPrefix $vnetAddressPrefix
-
-$subNet = Add-AzVirtualNetworkSubnetConfig `
-    -Name $subnetName `
-    -AddressPrefix $subnetAddressPrefix `
-    -VirtualNetwork $vnet
-
-Set-AzVirtualNetwork -VirtualNetwork $vnet
-
-```
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## Implantar uma VM para simular um Firewall On-premises
-
-### Azure Portal
 
 * Criar VM-FW-Onpremises
 
@@ -111,41 +104,23 @@ Set-AzVirtualNetwork -VirtualNetwork $vnet
 <img src="https://user-images.githubusercontent.com/25647623/227723201-13a13105-2320-4bf4-900c-fb525780ef7c.png" width="500px"></img>
 <img src="https://user-images.githubusercontent.com/25647623/227723203-63ae7a3a-970a-444e-9890-1fe77403f639.png" width="500px"></img>
 
-### Azure Powershell
-
-```powershell
-
-# Definir as informações da VM
-$virtualMachineName = "VM-FW-Onpremises"
-$networkInterfaceName = "vm-fw-onpremises683"
-$publicIpAddressName = "VM-FW-Onpremises-ip"
-$networkSecurityGroupName = "VM-FW-Onpremises-nsg"
-
-# Criar recurso de endereço IP público
-New-AzPublicIpAddress -Name $publicIpAddressName -ResourceGroupName "RG-Onpremises" -Location "eastus2" -AllocationMethod Static -Sku Standard -Tag @{ VM = "LAB-AZ-700" }
-
-# Criar recurso de Máquina virtual
-$vm = New-AzVMConfig -VMName $virtualMachineName -VMSize "Standard_B2s"
-$vm = Set-AzVMOperatingSystem -VM $vm -Windows -ComputerName "VM-FW-Onpremise" -Credential (Get-Credential -Message "Enter a username and password for the virtual machine.")
-$vm = Set-AzVMSourceImage -VM $vm -PublisherName "MicrosoftWindowsServer" -Offer "WindowsServer" -Skus "2022-datacenter-azure-edition" -Version "latest"
-$vm = Add-AzVMNetworkInterface -VM $vm -Id (Get-AzNetworkInterface -Name $networkInterfaceName -ResourceGroupName "RG-Onpremises").Id
-$vm = Set-AzVMOSDisk -VM $vm -Name "$virtualMachineName-OsDisk" -CreateOption FromImage -ManagedDiskId (New-AzDiskConfig -DiskName "$virtualMachineName-OsDisk" -DiskSizeGB 127 -Location "eastus2" -SkuName "Premium_LRS" -CreateOption Empty).Id -Caching ReadWrite -OsType Windows -DiskSizeGB 127
-New-AzVM -ResourceGroupName "RG-Onpremises" -Location "eastus2" -VM $vm -Tag @{ VM = "LAB-AZ-700" }
-
-# Criar recurso de Grupo de Segurança de Rede
-$rdpRule = New-AzNetworkSecurityRuleConfig -Name "RDP" -Protocol Tcp -Direction Inbound -Priority 100 -SourceAddressPrefix * -SourcePortRange * -DestinationAddressPrefix * -DestinationPortRange 3389 -Access Allow
-$nsg = New-AzNetworkSecurityGroup -ResourceGroupName "RG-Onpremises" -Location "eastus2" -Name $networkSecurityGroupName -SecurityRules $rdpRule -Tag @{ VM = "LAB-AZ-700" }
-
-# Associa o grupo de segurança de rede à placa de rede virtual
-$networkInterface = Get-AzNetworkInterface -Name $networkInterfaceName -ResourceGroupName "RG-Onpremises"
-$networkInterface.NetworkSecurityGroup = $nsg
-Set-AzNetworkInterface -NetworkInterface $networkInterface
-
-```
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## Criar um Local Network Gateway
 
 ![036-create-LNG-01](https://user-images.githubusercontent.com/25647623/227723842-2f76be5a-1fc8-4aed-a739-ae4852ad4fe4.png)
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## Configurar VPN Site-to-Site
 
@@ -163,6 +138,13 @@ Set-AzNetworkInterface -NetworkInterface $networkInterface
 * Testar conexão VPN Site-to-Site
 
 ![Screenshot (25)](https://user-images.githubusercontent.com/25647623/227727271-f417797a-c4da-48aa-b6b4-c452e384ce35.png)
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ## Configurar VPN Point-to-Site
 
