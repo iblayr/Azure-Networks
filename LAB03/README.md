@@ -46,7 +46,6 @@
 <img src="https://user-images.githubusercontent.com/25647623/227754481-1b0663c4-1a21-42b1-8a27-6a0bc186c224.png" width="500px"></img>
 <img src="https://user-images.githubusercontent.com/25647623/227754523-83263d79-0183-4a9b-88bc-7da1722ddb93.png" width="500px"></img>
 
-
 * Criar User VPN Gateway no Virtual Hub
 
 ![049-config-user-vpn-vhub](https://user-images.githubusercontent.com/25647623/227754678-f33d011d-5c96-40a7-ab59-fbbc270e0164.png)
