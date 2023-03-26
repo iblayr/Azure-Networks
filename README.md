@@ -1,6 +1,6 @@
 # Azure Networks
  
-Neste projeto eu executei 3 laboratórios utilizando os serviços de rede do azure. 
+Neste projeto eu executei três laboratórios utilizando os serviços de rede do azure.
 
 No primeiro laboratório, criei um estrutura de rede utilizando uma topologia de rede hub-spoke com 3 redes virtuais em regiões diferentes. Estabeleci o emparelhamento entre a rede hub e as redes spokes, implantei 2 máquinas virtuais e configurei uma zona de dns privada com auto-registro para todas as redes.
 
